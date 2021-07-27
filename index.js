@@ -7,8 +7,22 @@ const port = 5050;
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/test', async (req, res) => {
-  const url = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbgyb05011150001&SearchTarget=Book&QueryType=BestSeller&MaxResults=50&Cover=Big&&output=js&Version=20131101&start=1';
+app.get('/api/best', async (req, res) => {
+  let base = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbgyb05011150001&SearchTarget=Book&QueryType=BestSeller';
+  let query1 = '&MaxResults=';
+  let query2 = '&Cover=Big&&output=js&Version=20131101&start=';
+  let {max, page} = req.query;
+  let url = base + query1 + max + query2 + page
+  const {data} = await axios.get(url);
+  res.send(data);
+});
+
+app.get('/api/new', async (req, res) => {
+  let base = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbgyb05011150001&SearchTarget=Book&QueryType=ItemNewSpecial&Cover=Big&&output=js&Version=20131101';
+  let query1 = '&MaxResults=';
+  let query2 = '&start=';
+  let {max, page} = req.query;
+  let url = base + query1 + max + query2 + page
   const {data} = await axios.get(url);
   res.send(data);
 });
