@@ -19,7 +19,11 @@ class Bestseller extends React.Component {
     this.setState({books: item, isLoading: false});
   }
   componentDidMount() {
-    this.getBestList(20, 1);
+    const search = this.props.location.search;
+    const params = new URLSearchParams(search);
+    const page = params.get('page');
+    const max = params.get('max');
+    this.getBestList(max, page);
   }
   render() {
     const {isLoading, books} = this.state;

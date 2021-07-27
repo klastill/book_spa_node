@@ -19,7 +19,11 @@ class BrandNew extends React.Component {
     this.setState({books: item, isLoading: false});
   }
   componentDidMount() {
-    this.getNewList(20, 1);
+    const search = this.props.location.search;
+    const params = new URLSearchParams(search);
+    const page = params.get('page');
+    const max = params.get('max');
+    this.getNewList(max, page);
   }
   render() {
     const {isLoading, books} = this.state;
