@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import Books from '../components/Books';
 import './List.css';
+const port = process.env.PORT;
 
 class Bestseller extends React.Component {
   state = {
@@ -9,7 +10,7 @@ class Bestseller extends React.Component {
     books: []
   };
   getBestList = async (max, page) => {
-    const url = 'http://localhost:5050/api/best';
+    const url = `http://localhost:${port}/api/best`;
     const {data: {item}} = await axios.get(url, {
       params: {
         max: max,

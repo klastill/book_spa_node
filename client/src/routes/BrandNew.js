@@ -9,7 +9,7 @@ class BrandNew extends React.Component {
     books: []
   };
   getNewList = async (max, page) => {
-    const url = 'http://localhost:5050/api/new';
+    const url = `http://localhost:${port}/api/best`;
     const {data: {item}} = await axios.get(url, {
       params: {
         max: max,
