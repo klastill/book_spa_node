@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    // "start": "node server/index.js",
     "start": "nodemon server/index.js",
     "heroku-postbuild": "cd client && yarn install && yarn run build",
     "backend": "nodemon server/index.js",
